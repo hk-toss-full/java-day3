@@ -1,27 +1,25 @@
-import gtest.Food;
-import gtest.Order;
-import gtest.Product;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-// array 배열 길이가 선언시 정해진다
-// list 길이가 가변
-//        <type> 제네릭
-//        StoreAction action = new Store()
+/*
+ arr  배열 특징 인덱스가 있다. 길이가 정해져 있다.
+ list  길이가 가변적 데이터를 뽑아올때 index 로  (숫자)
+ seunzu 승주
+ qwerasdfxzdcv 최승혁
+ map 데이터를 뽑아올때 내가 원하는 key로 뽑아는 것
+ key와 value
+ set 특징 중복 x
+ */
 public class Main{
+
     public static void main(String[] args) {
-        String[] strs = {"h", "e", "l", "l", "o"};
-
-        List<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        System.out.println(list); // Arrays.toString(strs)
-        System.out.println(list.get(0)); // strs[0]
-        list.remove(0); // remove
-        System.out.println(list);
-        System.out.println(list.size());  // 길이 strs.length
-
+        Map<String, String> map = new HashMap<>();
+        map.put("seunzu", "승주");
+        map.put("qwerasdfxzdcv", "최승혁");
+        Set<String> key=  map.keySet();
+        System.out.println(key);
+        map.put("seunzu", "서승주");
+        System.out.println(map);
     }
 }

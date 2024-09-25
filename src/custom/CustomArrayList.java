@@ -36,6 +36,7 @@ public class CustomArrayList<T> implements CustomList<T>{
         Object[] before = arr;
         if(size == arr.length) arr = new Object[arr.length+1];
         arr[size++] = item;
+        if(before == arr) return;
         for (int i = 0; i < before.length; i++) arr[i] = before[i];
     }
 
