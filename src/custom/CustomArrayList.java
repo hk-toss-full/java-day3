@@ -2,12 +2,12 @@ package custom;
 
 import java.util.Arrays;
 
-public class CustomArrayList implements CustomList{
+public class CustomArrayList<T> implements CustomList<T>{
     private Object[] arr;
     private int size;
-
+    private final int INITIAL_SIZE = 10;
     public static void main(String[] args) {
-        CustomList<String> strs = new CustomArrayList();
+        CustomList<String> strs = new CustomArrayList<>();
         strs.add("Hello");
         strs.add("World");
         strs.add("Java");
@@ -16,10 +16,13 @@ public class CustomArrayList implements CustomList{
             strs.add(i+"index");
         }
         System.out.println(strs);
+        System.out.println(strs.get(4));
+        strs.remove(2);
+        System.out.println(strs);
     }
 
     public CustomArrayList() {
-        arr = new Object[10];
+        arr = new Object[INITIAL_SIZE];
         size = 0;
     }
 
@@ -43,16 +46,29 @@ public class CustomArrayList implements CustomList{
 
     @Override
     public void remove(int index) {
-
+        if(index >= size) return;
+        Object[] after = arr.length > INITIAL_SIZE ? new Object[arr.length-1] : arr;
+        for (int i = 0; i < after.length; i++){
+            if(i == index) after[i] = arr[i+1];
+            else after[i] = arr[i];
+        }
+        arr = after;
+        size--;
     }
 
     @Override
     public void remove(Object item) {
-
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i].equals(item)) {
+                remove(i);
+                return;
+            }
+        }
     }
 
     @Override
-    public Object get(int index) {
-        return null;
+    public T get(int index) {
+        if (size <= index) return null;
+        return (T) arr[index];
     }
 }
